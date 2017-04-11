@@ -1,0 +1,35 @@
+<div class="modal-dialog">
+
+  <div class="modal-content">
+
+    <div class="modal-header">
+      <h2 class="modal-title">Return VHS</h2>
+    </div>
+
+    <div class="modal-body">
+
+      <div [hidden]="returned">
+
+        <input type="checkbox" (click)="calculateBaseFee()" [(ngModel)]="base"> Base fee: {{baseFee}}$ * {{currentRent.rentDays}}<br>
+        <input type="checkbox" (click)="calculateLostFee()" [(ngModel)]="lostVhs"> Lost/Broken vhs fee: {{lostVhsFee}}$ * 1 <br>
+        <input type="checkbox" (click)="calculateRewindFee()" [(ngModel)]="notRewinded"> Not rewinded vhs fee: {{notRewindedFee}}$ * 1 <br>
+        <input type="checkbox" (click)="calculateOverextentionFee()" [(ngModel)]="overextendedReturn"> Overextended return fee: {{overextendedReturnFee}}$ * {{overextendedDays}}<br>
+        Total fee: {{xxx}} <br>
+        {{xxx}}
+
+      </div>
+
+      <div [hidden]="!returned">Movie returned!</div>
+
+    </div>
+
+    <div class="modal-footer">
+
+      <button type="submit"  (click)="clearAll()" data-dismiss="modal" class="btn btn-default">Close</button>
+      <button type="submit" [disabled]="returned" (click)="returnVhs()" class="btn btn-default">Confirm movie return</button>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,159 @@
+html, body {
+  background-color:#3f3f3f;
+  height: 100vh;
+
+  overflow:hidden;
+}
+
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+
+.mainContent {
+  background-color:#3f3f3f;
+  height: 100vh;
+  overflow: auto;
+  background-image:
+    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+    radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+  background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+  background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.moviesList {
+  width:75%;
+  margin-left:auto;
+}
+
+.singleMovie {
+
+  border-radius: 10px;
+  color: white;
+  background-color: #696969;
+  margin-top: 50px;
+  font-size: 30px;
+  font-family: "Times New Roman";
+  box-shadow: 15px 15px 5px #222;
+  padding-left: 25px;
+  padding-top: 10px;
+  height: 60px;
+}
+
+.singleMovie:last-child{
+  margin-bottom:100px;
+}
+.rightSideBar{
+  background: url("bckg.jpg") no-repeat center;
+  border-left: solid 1px #080808;
+  background-color:#222;
+  height: 100vh;
+  overflow:hidden;
+}
+
+.details{
+  float:right;
+  margin-top:5px;
+}
+
+.title{
+  width:275px;
+  float:left;
+}
+
+.year{
+  width:50px;
+  margin-left:50px;
+  float:left;
+}
+
+.rating{
+  width:50px;
+  margin-left:90px;
+  float:left;
+}
+.movieDetails{
+  width:250px;
+  float:left;
+  margin-right:25px;
+}
+
+.posterImg{
+  height: 325px;
+  width: 250px;
+  float:left;
+}
+
+img{
+  height:100%;
+  width:100%;
+}
+
+.modal-body{
+  background-color:#696969;
+  color:white;
+}
+
+.modal-header{
+  background-color:#222;
+  color:white
+}
+
+.modal-footer{
+  background-color:#222;
+  color:white
+}
+
+.sortingButtonsContainer{
+  border-radius: 10px;
+  color: white;
+  background-color: #696969;
+  margin-top: 50px;
+  font-size: 30px;
+  font-family: "Times New Roman";
+  box-shadow: 15px 15px 5px #222;
+  padding-left: 25px;
+  padding: 20px;
+  height: 220px;
+}
+
+.sortingButton{
+  float:left;
+}
+
+.sort{
+  width:65px;
+}
+
+#search{
+  float:right;
+  height: 40px;
+  border-radius:5px;
+  margin-bottom: 25px;
+  padding:3px;
+  text-align:center;
+  color:black;
+}
+
+.inputMovie{
+  width:538px;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.ng-valid[required], ng-valid.required {
+  border-left: 5px solid #42A948;
+}
+
+.ng-invalid:not(form) {
+  border-left: 5px solid #a94442;
+}
