@@ -14,8 +14,7 @@
         <input type="checkbox" (click)="calculateLostFee()" [(ngModel)]="lostVhs"> Lost/Broken vhs fee: {{lostVhsFee}}$ * 1 <br>
         <input type="checkbox" (click)="calculateRewindFee()" [(ngModel)]="notRewinded"> Not rewinded vhs fee: {{notRewindedFee}}$ * 1 <br>
         <input type="checkbox" (click)="calculateOverextentionFee()" [(ngModel)]="overextendedReturn"> Overextended return fee: {{overextendedReturnFee}}$ * {{overextendedDays}}<br>
-        Total fee: {{xxx}} <br>
-        {{xxx}}
+        <div class="totalFee"> Total fee: {{totalFee}} <br> </div>
 
       </div>
 
@@ -25,7 +24,7 @@
 
     <div class="modal-footer">
 
-      <button type="submit"  (click)="clearAll()" data-dismiss="modal" class="btn btn-default">Close</button>
+      <button type="submit"  (click)="clearAll()" data-dismiss="modal" class="btn btn-default closeModal">Close</button>
       <button type="submit" [disabled]="returned" (click)="returnVhs()" class="btn btn-default">Confirm movie return</button>
 
     </div>

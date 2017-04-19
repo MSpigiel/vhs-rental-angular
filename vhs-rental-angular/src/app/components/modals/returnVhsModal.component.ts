@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output,} from '@angular/core';
+import {AfterViewChecked, Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {RentInfo} from '../../model/rentInfo';
 @Component({
   selector: 'returnVhs-selector',
   templateUrl: './../../templates/modalsTemplates/returnVhs.html'
 })
-export class ReturnVhsComponent implements OnInit {
+export class ReturnVhsComponent implements DoCheck {
   @Input() currentRent: RentInfo;
   @Output() notify: EventEmitter<any> = new EventEmitter();
 
@@ -13,9 +13,13 @@ export class ReturnVhsComponent implements OnInit {
   readonly overextendedReturnFee: number = 10;
   readonly lostVhsFee: number = 50;
 
+  base: boolean = false;
+  notRewinded: boolean = false;
+  lostVhs: boolean = false;
+  overextendedReturn: boolean = false;
+
   overextendedDays: number = 0;
   totalFee: number = 0;
-  xxx: number = 10;
 
   returnVhs() {
     this.notify.emit();
@@ -24,6 +28,10 @@ export class ReturnVhsComponent implements OnInit {
   clearAll() {
     this.overextendedDays = 0;
     this.totalFee = 0;
+    this.base = false;
+    this.notRewinded = false;
+    this.lostVhs = false;
+    this.overextendedReturn = false;
   }
 
   calculateBaseFee() {
@@ -60,12 +68,12 @@ export class ReturnVhsComponent implements OnInit {
     if (this.overextendedReturn) {
       this.totalFee -= (this.overextendedReturnFee * this.overextendedDays);
     }
+    this.calculateOverextendedDays();
   }
 
   calculateOverextendedDays() {
     let currentDateInMilli = new Date().getTime();
     let rentedDateInMilli = Number(this.currentRent.rentalStartDate);
-    this.xxx = this.currentRent.rentDays;
     let overextention = (Math.floor( ((currentDateInMilli - rentedDateInMilli) / 86400000) ) - this.currentRent.rentDays);
 
     if (overextention > 0) {
@@ -75,7 +83,9 @@ export class ReturnVhsComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    this.calculateOverextendedDays();
+  ngDoCheck() {
+    if (this.currentRent.rentalStartDate != null) {
+      this.calculateOverextendedDays();
+    }
   }
 }

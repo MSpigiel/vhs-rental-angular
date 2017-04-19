@@ -4,13 +4,13 @@
       <li>
         <div class="title">{{rent.vhs.title}}</div>
         <div class="title"> Rented by {{rent.socialSecurity}}</div>
-        <button type="button" class="btn btn-primary btn-md details" (click)="onSelect(rent); returner.calculateOverextendedDays();" data-toggle="modal" data-target="#returnVhs">Return</button>
+        <button type="button" class="btn btn-primary btn-md details" (click)="onSelect(rent)" data-toggle="modal" data-target="#returnVhs">Return</button>
       </li>
     </ul>
 
   </div>
 </div>
 
-<div id="returnVhs" class="modal fade" role="dialog">
-  <returnVhs-selector (notify)='returnVhs($event)' [currentRent]='currentRent' #returner></returnVhs-selector>
+<div id="returnVhs" data-backdrop ="static" class="modal fade" role="dialog">
+  <returnVhs-selector (notify)='returnVhs($event)' [currentRent]='currentRent'></returnVhs-selector>
 </div>

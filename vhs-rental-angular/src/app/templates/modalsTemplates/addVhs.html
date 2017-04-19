@@ -1,0 +1,120 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      Add new VHS
+    </div>
+    <div class="modal-body">
+      <div [hidden]="submitted">
+        <div class = "container-fluid">
+          <h1>vhs form</h1>
+          <form #movieForm="ngForm">
+
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" class ="form-control inputMovie" autocomplete="off" id="title" required minlength="3" maxlength="20" [(ngModel)]="newMovie.title" name="title" #title="ngModel">
+              <div *ngIf="title.errors && (title.dirty || title.touched)" class="alert alert-danger inputMovie">
+                <div [hidden]="!title.errors.required">
+                  Title is required
+                </div>
+                <div [hidden]="!title.errors.minlength">
+                  Title must contain min. 3 letters
+                </div>
+                <div [hidden]="!title.errors.maxlength">
+                  Title cant contain more than 20 letters
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="director">Director</label>
+              <input type="text" class ="form-control inputMovie" autocomplete="off" id="director" required minlength="3" maxlength="20" [(ngModel)]="newMovie.director" name="director" #director="ngModel">
+              <div *ngIf="director.errors && (director.dirty || director.touched)" class="alert alert-danger inputMovie">
+                <div [hidden]="!director.errors.required">
+                  Director is required
+                </div>
+                <div [hidden]="!director.errors.minlength">
+                  Director must contain min. 3 letters
+                </div>
+                <div [hidden]="!director.errors.maxlength">
+                  Director cant contain more than 20 letters
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="genre">Genre</label>
+              <select id="genre" class="form-control"
+                      name="genre"
+                      [(ngModel)]="newMovie.genre" required
+                      #genre="ngModel" >
+                <option *ngFor="let g of genres" [value]="g.genreName" class="options">{{g.genreName}}</option>
+              </select>
+              <div *ngIf="genre.errors && genre.touched" class="alert alert-danger">
+                <div [hidden]="!genre.errors.required">Genre is required</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="year">Production year</label>
+              <input name="year" type="number" autocomplete="off" pattern="[0-9]{4}" class="form-control inputMovie" id="year" required [(ngModel)]="newMovie.productionDate" #year="ngModel">
+              <div *ngIf="year.errors && (year.dirty || year.touched)" class="alert alert-danger inputMovie">
+                <div [hidden]="!year.errors.required">
+                  Production year is required.
+                </div>
+                <div [hidden]="!year.errors.pattern">
+                  Year must contain 4 digits.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="country">Production country</label>
+              <input type="text" class ="form-control inputMovie" autocomplete="off" id="country" required minlength="3" maxlength="20" [(ngModel)]="newMovie.productionCountry" name="country" #country="ngModel">
+              <div *ngIf="country.errors && (country.dirty || country.touched)" class="alert alert-danger inputMovie">
+                <div [hidden]="!country.errors.required">
+                  Production country is required
+                </div>
+                <div [hidden]="!country.errors.minlength">
+                  Production country must contain min. 3 letters
+                </div>
+                <div [hidden]="!country.errors.maxlength">
+                  Production country cant contain more than 20 letters
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="duration">Movie duration</label>
+              <input name="duration" type="number" autocomplete="off" pattern="[0-9]{2,3}" class="form-control inputMovie" id="duration" required [(ngModel)]="newMovie.duration" #duration="ngModel">
+              <div *ngIf="duration.errors && (duration.dirty || duration.touched)" class="alert alert-danger inputMovie">
+                <div [hidden]="!duration.errors.required">
+                  Movie duration is required.
+                </div>
+                <div [hidden]="!duration.errors.pattern">
+                  Duration must contain 3 digits.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="poster">Poster url</label>
+              <input type="text" class ="form-control inputMovie" autocomplete="off" id="poster" pattern="https?://.+"[(ngModel)]="newMovie.posterUrl" name="poster" #poster="ngModel">
+              <div *ngIf="poster.errors && (poster.dirty || poster.touched)" class="alert alert-danger inputMovie">
+                <div [hidden]="!poster.errors.pattern">
+                  Must be a valid url
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" (click)="createMovie(newMovie)" [disabled]="!movieForm.form.valid" class="btn btn-default addVhsButton">Submit</button>
+          </form>
+        </div>
+      </div>
+      <div [hidden]="!submitted">Dodano nowy VHS!</div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" (click)="clearAll(); movieForm.reset();" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+
+</div>

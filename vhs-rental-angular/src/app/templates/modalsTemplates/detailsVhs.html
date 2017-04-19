@@ -1,0 +1,67 @@
+<div class="modal-dialog">
+
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">{{currentMovie.title}}</h2>
+    </div>
+    <div class="modal-body">
+      <div [hidden]="hideDetails">
+        <div class="movieDetails">
+          <div class="detailsDisplay">Director: {{currentMovie.director}}</div>
+          <div class="detailsDisplay">Genre: {{currentMovie.genre}}</div>
+          <div class="detailsDisplay">Production country: {{currentMovie.productionCountry}}</div>
+          <div class="detailsDisplay">Production year: {{currentMovie.productionDate}}</div>
+          <div class="detailsDisplay">Duration: {{currentMovie.duration}} minutes </div>
+          <div class="detailsDisplay">Rating: {{currentMovie.rating}}</div>
+        </div>
+        <div class="posterImg">
+          <img src="{{currentMovie.posterUrl}}">
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+
+      <div [hidden]="hideForm">
+        <form #rentForm="ngForm">
+
+          Rent {{currentMovie.title}} to a person of <br>
+
+          <div class="form-group">
+            <label for="socialSecurity">Social-security number:</label>
+            <input name="socialSecurity" type="text" autocomplete="off" minlength="9" maxlength="9" style="text-transform:uppercase" class="form-control inputMovie" id="socialSecurity" required [(ngModel)]="rental.socialSecurity" #socialSecurity="ngModel">
+            <div *ngIf="socialSecurity.errors && (socialSecurity.dirty || socialSecurity.touched)" class="alert alert-danger inputMovie">
+              <div [hidden]="!socialSecurity.errors.required">
+                9-characters social security number is required.
+              </div>
+              <div [hidden]="!socialSecurity.errors.minlength">
+                Social-security must contain 9 characters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="days">For an amount of days equals of:</label>
+            <input name="days" type="number" autocomplete="off" pattern="[1-7]{1}" class="form-control inputMovie" id="days" required [(ngModel)]="rental.rentDays" #days="ngModel">
+            <div *ngIf="days.errors && (days.dirty || days.touched)" class="alert alert-danger inputMovie">
+              <div [hidden]="!days.errors.required">
+                Amount of days to rent is required.
+              </div>
+              <div [hidden]="!days.errors.pattern">
+                Company policy allows to rent VHS only for 1-7 days.
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" (click)="doRent()" [disabled]="!rentForm.form.valid" class="btn btn-default">Submit</button>
+        </form>
+      </div>
+      <div [hidden]="!rented">Movie {{currentMovie.title}} has been rented</div>
+    </div>
+
+
+    <div class="modal-footer">
+      <button type="submit" [disabled]="rented" (click)="onRent()" class="btn btn-default rentVhsBtn">Rent movie</button>
+      <button type="button" (click)="clearAll(); rentForm.reset();" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+
+</div>

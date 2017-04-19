@@ -5,18 +5,20 @@ import { FormsModule }   from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { AppComponent }  from './components/app.component';
 import { AppComponentRented }  from './components/app.componentRented';
-import { AppComponentMovies, MyFilterPipe }  from './components/app.componentMovies';
-import { AppComponentWelcome }  from './components/app.componentWelcome';
+import { AppComponentMovies }  from './components/app.componentMovies';
+import { MyFilterPipe }  from './FilterPipe';
 import { ReturnVhsComponent }  from './components/modals/returnVhsModal.component';
+import { AddVhsComponent }  from './components/modals/addVhsModal.component';
+import { EditVhsComponent }  from './components/modals/editVhsModal.component';
+import { DetailsVhsComponent }  from './components/modals/detailsVhsModal.component';
 
 const appRoutes: Routes = [
   { path: 'moviesList',               component: AppComponentMovies },
   { path: 'rentedMovies',              component: AppComponentRented},
-  { path: 'welcomePage',              component: AppComponentWelcome },
   { path: 'main',                     component: AppComponent },
 
   { path: '',
-    redirectTo: '/welcomePage',
+    redirectTo: '/moviesList',
     pathMatch: 'full'
   },
   { path: '**', component: AppComponent },
@@ -29,7 +31,8 @@ const appRoutes: Routes = [
     HttpModule,
     JsonpModule,
     ],
-  declarations: [ AppComponent, AppComponentMovies, MyFilterPipe, AppComponentRented, AppComponentWelcome, ReturnVhsComponent ],
-  bootstrap:    [ AppComponent ]
+  declarations: [ AppComponent, AppComponentMovies, MyFilterPipe, AppComponentRented,
+    ReturnVhsComponent, AddVhsComponent, EditVhsComponent, DetailsVhsComponent ],
+  bootstrap:    [ AppComponent ],
 })
 export class AppModule { }
